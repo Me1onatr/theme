@@ -10,10 +10,10 @@
 
 :root {
   /* Host your extracted textures and paste the URLs here */
-  --mc-dirt:        url("https://YOUR-HOST/dirt.png");
-  --mc-button:      url("https://YOUR-HOST/button.png");
-  --mc-button-hi:   url("https://YOUR-HOST/button_highlighted.png");
-  --mc-button-off:  url("https://YOUR-HOST/button_disabled.png");
+  --mc-dirt:        url("https://github.com/Me1onatr/theme/blob/main/dirt.png");
+  --mc-button:      url("https://github.com/Me1onatr/theme/blob/main/button.png");
+  --mc-button-hi:   url("https://github.com/Me1onatr/theme/blob/main/button_highlighted.png");
+  --mc-button-off:  url("https://github.com/Me1onatr/theme/blob/main/button_disabled.png");
 
   --mc-scale: 2;               /* pixel size multiplier */
   --mc-font: "Monocraft", "Minecraftia", monospace;
