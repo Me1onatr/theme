@@ -1,0 +1,112 @@
+/**
+ * @name Minecraft
+ * @author you
+ * @version 0.1.0
+ * @description Minecraft-style Discord
+ */
+
+/* Pixel-perfect scaling for all the art */
+* { image-rendering: pixelated; }
+
+:root {
+  /* Host your extracted textures and paste the URLs here */
+  --mc-dirt:        url("https://YOUR-HOST/dirt.png");
+  --mc-button:      url("https://YOUR-HOST/button.png");
+  --mc-button-hi:   url("https://YOUR-HOST/button_highlighted.png");
+  --mc-button-off:  url("https://YOUR-HOST/button_disabled.png");
+
+  --mc-scale: 2;               /* pixel size multiplier */
+  --mc-font: "Monocraft", "Minecraftia", monospace;
+
+  /* Minecraft palette */
+  --mc-text:   #ffffff;
+  --mc-gray:   #aaaaaa;
+  --mc-dark:   #373737;
+  --mc-slot:   #8b8b8b;
+  --mc-yellow: #ffff55;
+  --mc-green:  #55ff55;
+}
+
+@import url("https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft.css"); /* verify URL; or host the font yourself */
+
+body, button, input, textarea {
+  font-family: var(--mc-font) !important;
+  -webkit-font-smoothing: none;
+  text-shadow: 2px 2px 0 #3f3f3f;   /* Minecraft's drop shadow */
+}
+
+/* ---- Dirt backgrounds: server list + channel sidebar ---- */
+[class*="guilds_"],
+[class*="sidebar_"] {
+  background: var(--mc-dirt) !important;
+  background-size: calc(16px * var(--mc-scale) * 2) !important;
+  background-color: #2b1d12 !important;
+}
+/* darken it like the options screen */
+[class*="sidebar_"]::before {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(0,0,0,.55); pointer-events: none;
+}
+
+/* ---- Chat area: dark panel ---- */
+[class*="chatContent_"] {
+  background: #1e1e1e !important;
+}
+
+/* ---- Buttons: 9-slice the button sprite ---- */
+[class*="button_"][class*="lookFilled"],
+[class*="lookFilled"] {
+  background: transparent !important;
+  border: 6px solid transparent !important;
+  border-image-source: var(--mc-button);
+  border-image-slice: 3 fill;
+  border-image-width: 6px;
+  border-radius: 0 !important;
+  color: #fff !important;
+}
+[class*="lookFilled"]:hover {
+  border-image-source: var(--mc-button-hi);
+}
+[class*="lookFilled"][disabled] {
+  border-image-source: var(--mc-button-off);
+  color: var(--mc-gray) !important;
+}
+
+/* ---- Selected / hovered channel = highlighted button ---- */
+[class*="modeSelected_"],
+[class*="modeHovered_"] {
+  background: rgba(255,255,255,.12) !important;
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  border-radius: 0 !important;
+}
+
+/* ---- Message box: inventory-slot look (bevelled, CSS only) ---- */
+[class*="channelTextArea_"] {
+  background: var(--mc-dark) !important;
+  border-radius: 0 !important;
+  border: 3px solid;
+  border-color: #1b1b1b #fff #fff #1b1b1b;  /* inset bevel */
+}
+
+/* ---- Kill rounded corners everywhere ---- */
+[class*="avatar_"], [class*="wrapper_"] svg, img, [class*="icon_"] {
+  border-radius: 0 !important;
+}
+
+/* ---- Tooltips: purple-bordered Minecraft tooltip ---- */
+[class*="tooltip_"] {
+  background: #100010 !important;
+  border: 2px solid #2d0a63 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+}
+
+/* ---- Scrollbars ---- */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb {
+  background: var(--mc-slot);
+  border: 2px solid; border-color: #fff #373737 #373737 #fff;
+  border-radius: 0;
+}
